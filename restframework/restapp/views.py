@@ -15,6 +15,13 @@ from .models import QuestionAnswer
 def index(request):
     return render(request, 'restapp/home.html')
 
+def login(request):
+    return render(request, 'restapp/login.html')
+
+def register(request):
+    return render(request, 'restapp/register.html')
+
+
 class UserList(APIView):
     def get(self, request, format=None):
         users = User.objects.all()

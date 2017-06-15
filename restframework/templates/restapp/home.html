@@ -2,31 +2,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="{% static 'js/angular.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/appmodule.js' %}"></script>
-<script type="text/javascript">
- 
-</script>
+<script type="text/javascript" src="{% static 'restapp/js/angular.js' %}"></script>
+<script type="text/javascript" src="{% static 'restapp/js/appmodule.js' %}"></script>
+      <style>  
+         table, th , td {  
+            border: 1px solid grey;  
+            border-collapse: collapse;  
+            padding: 5px;  
+         }  
+           
+         table tr:nth-child(odd) {  
+            background-color: #f2f2f2;  
+         }  
+           
+         table tr:nth-child(even) {  
+            background-color: #ffffff;  
+         }  
+      </style>  
 </head>
 <body>
 
 <div ng-app="myApp" ng-controller="namesCtrl">
- 
-<!-- <p>Input something in the input box:</p>
-<p>Name : <input type="text" ng-model="name" placeholder="Enter name here"></p>
-<h1>Hello //name//</h1> -->
+<h3>List of User details</h3>
+<table>  
+   <tr>  
+      <th>Id</th>  
+      <th>First Name</th>  
+      <th>Last Name</th>
+      <th>Full Name</th>
+      <th>Username</th>
+      <th>Email</th>
+   </tr>  
+   <tr ng-repeat="data in mydata">  
+      <td>// data.id //</td>  
+      <td>// data.first_name //</td>
+      <td>// data.last_name //</td> 
+      <td>// data.get_full_name //</td> 
+      <td>// data.username //</td> 
+      <td>// data.email //</td> 
+   </tr>  
+</table>  
 
-<!-- <h2>Cost Calculator</h2>  
-Quantity: <input type="number" ng-model="quantity"> <br><br> 
-Price: <input type="number" ng-model="price">  
-<p><b>Total in rupees:</b> //quantity * price//</p>   -->
 
+<h3>Rating of technology</h3>
+Rows to display : <input type="number" step="1" min="0" max="10" ng-model="rowlimit" name="">
+<br /><br />
+<table>  
+<thead>
+   <tr>  
+      <th>Technology Name</th>  
+      <th>Likes</th>  
+      <th>Dislikes</th>
+      <th>Likes/Dislikes</th>
+   </tr>
+   </thead>
+   <tbody>  
+   <tr ng-repeat="technology in technologies | limitTo:rowlimit">  
+      <td>// technology.name //</td>  
+      <td>// technology.likes //</td>
+      <td>// technology.dislike //</td> 
+      <td>
+      	<input type="button" value="like" name="" ng-click="increamentLikes(technology)">
+      	<input type="button" value="Dislike" name="" ng-click="increamentDislikes(technology)">
+      </td> 
+   </tr>  
+   </tbody>
+</table>  
 
-<!-- <input style="background-color://myCol//" ng-model="myCol" value="//myCol//">   -->
-
-<ul>  
-  <li ng-repeat="x in names | filter : 'o'">// x //</li>  
-</ul>  
 
 </div>
 

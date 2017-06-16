@@ -10,23 +10,25 @@ from rest_framework.response import Response
 from restapp.serializers import UserSerializer, QuestionAnswerSerializer
 from django.contrib.auth.models import User
 from .models import QuestionAnswer
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 def index(request):
     return render(request, 'restapp/home.html')
 
-def login(request):
-    return render(request, 'restapp/login.html')
+def postdata(request):
+    return render(request, 'restapp/postdata.html')
 
-def register(request):
-    return render(request, 'restapp/register.html')
-
+def updateData(request, pk):
+    user = User.objects.get(pk=pk)
+    print "user==>",user.username
+    return render(request, 'restapp/updateData.html',{'user':user})
 
 class UserList(APIView):
     def get(self, request, format=None):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
-
         return Response(serializer.data)
 
     def post(self, request, format=None):

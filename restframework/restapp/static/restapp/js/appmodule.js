@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ["ngRoute"]);
 
 /*	*/
 
@@ -8,7 +8,12 @@ myApp.config(function($interpolateProvider) {
 });
 
 
-myApp.controller('namesCtrl', function($scope, $http) {
+myApp.controller('namesCtrl', function($scope, $http, $location, $anchorScroll) {
+	$scope.scrollTo= function(scrollLocation){
+		$location.hash(scrollLocation);
+		$anchorScroll.yOffset = 20; 
+		$anchorScroll(); 	
+	}
 	$scope.mydata = [];
 
 	$http.get('/restapp/users/').then(function(response){
@@ -43,11 +48,10 @@ myApp.controller('namesCtrl', function($scope, $http) {
 			return $scope.reverseSort ? '.arrow-down' : '.arrow-up';	
 		}
 		return '';
-
 	}
-
 }); 
 
 
 
 
+	

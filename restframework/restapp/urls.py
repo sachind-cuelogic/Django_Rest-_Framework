@@ -5,7 +5,9 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^postdata/', views.postdata,name="postdata"),
+    #url(r'^postdata/', views.postdata,name="postdata"),
+    url(r'^userDisplay/', views.userDisplay,name="userDisplay"),
+    # url(r'^about/', views.about,name="about"),
     url(r'^updateData/(?P<pk>[0-9]+)/$', views.updateData, name="updateData"),
 
     url(r'^users/', views.UserList.as_view()),

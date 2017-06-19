@@ -1,4 +1,28 @@
+var mainApp = angular.module('mainApp', ["ngRoute"]);
 
+mainApp.config(function($routeProvider) {
+  $routeProvider
+  .when('/restapp', {
+    templateUrl: 'home.html',
+  })
+  .when('/about', {
+    templateUrl: '/static/templates/about.html',
+    controller: 'aboutCtrl'
+  })
+
+ .when('/postdata', {
+    templateUrl: '/static/templates/postdata.html',
+    controller: 'namesCtrl'
+  })
+
+/* 
+  .when('/restapp/userDisplay', {
+    templateUrl: 'userDisplay.html',
+    controller: 'namesCtrl'
+  })*/
+
+
+});
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -17,7 +41,6 @@ function getCookie(name) {
 function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
-
 
 mainApp.controller('namesCtrl', function($scope, $http) {
 	$scope.user = {};
@@ -47,5 +70,8 @@ mainApp.controller('namesCtrl', function($scope, $http) {
 }); 
 
 
+mainApp.controller("aboutCtrl", function ($scope) {
+    console.log("Hey there")
+});
 
 

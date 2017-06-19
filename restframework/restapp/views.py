@@ -17,6 +17,12 @@ from django.shortcuts import get_object_or_404
 def index(request):
     return render(request, 'restapp/home.html')
 
+def userDisplay(request):
+    return render(request, 'restapp/userDisplay.html')
+
+def about(request):
+    return render(request, 'restapp/about.html')    
+
 def postdata(request):
     return render(request, 'restapp/postdata.html')
 

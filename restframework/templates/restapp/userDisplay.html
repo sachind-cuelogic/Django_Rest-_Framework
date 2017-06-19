@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+   <script type="text/javascript" src="{% static 'restapp/js/angular.js' %}"></script>
+   <script type="text/javascript" src="{% static 'restapp/js/appmodule.js' %}"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'restapp/bootstrap/css/bootstrap.min.css' %}">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script type="text/javascript" src="{% static 'restapp/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+   <style>  
+   body{
+      margin: 50px 0px;
+   }
+      table, th , td {  
+         border: 1px solid gray;  
+         border-collapse: collapse;  
+         padding: 5px;  
+      }  
+
+      table tr:nth-child(odd) {  
+         background-color: #f2f2f2;  
+      }  
+
+      table tr:nth-child(even) {  
+         background-color: #ffffff;  
+      }  
+      .arrow-up{
+         width : 0px;
+         height: 0px;
+         border-left: 5px solid transparent;
+         border-right: 5px solid transparent;
+         border-bottom: 10px solid black;
+      }
+      .arrow-down{
+         width : 0px;
+         height: 0px;
+         border-left: 5px solid transparent;
+         border-right: 5px solid transparent;
+         border-top: 10px solid black;
+      }
+   </style>  
+</head>
+<body>
+   <div class="container">
+      <div ng-app="myApp" ng-controller="namesCtrl">
+      <button id="top" ng-click="scrollTo('bottom')">Go To Bottom of Page</button>
+         <h3>List of User details</h3>
+         <input type="checkbox" ng-model="hideEmail" name=""> Hide Email
+         <table>  
+            <tr>  
+               <th>Id</th>  
+               <th>First Name</th>  
+               <th>Last Name</th>
+               <th>Full Name</th>
+               <th>Username</th>
+               <th ng-hide="hideEmail">Email</th>
+            </tr>  
+            <tr ng-repeat="data in mydata">  
+               <td>// data.id //</td>  
+               <td>// data.first_name //</td>
+               <td>// data.last_name //</td> 
+               <td>// data.get_full_name //</td> 
+               <td>// data.username //</td> 
+               <td ng-hide="hideEmail">// data.email //</td> 
+            </tr>  
+         </table>  
+
+
+         <h3>Rating of technology</h3>
+         Rows to display : <input type="number" step="1" min="0" max="10" ng-model="rowlimit" name="">
+         <br /><br />
+<!-- html comment 
+
+Order by : 
+
+
+<select ng-model="sortColumn">
+<option value="name">Technlogy Name</option>
+<option value="likes">Likes</option>
+<option value="dislike">Dislike</option>
+
+</select>
+<br /><br />
+-->
+
+Search : <input type="Search" placeholder="Search here..." ng-model="searchText" name="">
+<br /><br />
+<table>  
+   <thead>
+      <tr>  
+         <th ng-click="sortData('name')">
+            Technology Name<div ng-class="getSortClass('name')"></div>
+         </th>  
+         <th>Likes</th>  
+         <th>Dislikes</th>
+         <th>Likes/Dislikes</th>
+      </tr>
+   </thead>
+   <tbody>  
+      <tr ng-repeat="technology in technologies | limitTo:rowlimit | orderBy:sortColumn:reverseSort | filter:searchText">  
+         <td>// technology.name //</td>  
+         <td>// technology.likes //</td>
+         <td>// technology.dislike //</td> 
+         <td>
+            <input type="button" value="like" name="" ng-click="increamentLikes(technology)">
+            <input type="button" value="Dislike" name="" ng-click="increamentDislikes(technology)">
+         </td> 
+      </tr>  
+   </tbody>
+</table>  
+
+<br /><br />
+      <div class="row">
+      <div class="col-md-3">
+         <ul class="nav">
+            <li><a href="#!restapp/postdata"> Click here to add New User </a></li>
+         </ul>
+      </div>
+      <div class="col-md-9">
+         <div ng-view></div>
+      </div>
+      </div>
+<br />
+<button id="bottom" ng-click="scrollTo('top')">Go To Top of Page</button>
+</div>
+</div>
+</body>
+</html>			
